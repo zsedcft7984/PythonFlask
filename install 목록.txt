@@ -1,0 +1,8 @@
+pip install flask
+pip install python-dotenv  // .env 쓸려고
+pip install email-validator // email post 값의 입력체크 추가 or 오랍른 주소인가 확인
+pip install flask-debugtoolbar // 디버그툴바 생성
+pip install flask-mail
+
+pip install flask-sqlalchemy
+pip install flask-migrate

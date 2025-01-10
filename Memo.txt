@@ -1,0 +1,90 @@
+@app.route("/name/<name>)
+
+주소/name/ 변하는 내용
+
+
+# @app.route("/hello")
+# def hello():
+#     return "Hello, World!"
+
+# 플라스크 엔드포이트 이름 붙이기
+
+엔드 포인트란?
+요청을 처리하는 함수(요청의 종점)
+응답을 반환하는 함수(return)
+# 기본형 : app.route("/",endpoint="endpoint-name")
+
+
+# 허가할 HTTP 메서드 정하기
+# @app.route("/",methods=["GET","POST"])
+
+#주소뒤에 값을 받아 넣음
+# @app.route("/hello/<name>",
+#             methods=["GET", "POST"],
+#             endpoint="hello-endpoint")
+# def hello(name):
+#     return f"Hello, {name}!"
+
+앱 비밀번호
+qxxl hsoq ygol uefu
+
+PRG(POST REDIRECT GET) 패턴
+폼데이터를 POST하면 REDIRECT 하여 GET한 페이지를 표시함
+-----------------------------------------------------------------------------------------------------------
+2일차
+
+app.py꺼
+app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")                   #이메일 서버 호스트명
+app.config["MAIL_PORT"] = os.environ.get("MAIL_PORT")                       #이메일 서버의 포트
+app.config["MAIL_USE_TLS"] = os.environ.get("MAIL_USE_TLS")                 #TLS를 유효로 하는가
+app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")               #송신자 이메일 주소              
+app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")               #송신자 이메일 주소의 비밀번호
+app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")   #이메일의 송ㅈ신자명과 이메일 주소
+
+.env꺼
+MAIL_SERVER = smtp.gmail.com
+MAIL_PORT = 587
+MAIL_USE_TLS = True
+MAIL_USERNAME = [phonecp7984@gmail.com]
+MAIL_PASSWORD = [qxxl hsoq ygol uefu]
+MAIL_DEFAULT_SENDER = Flaskbook <phonecp7984@gmail.com>
+
+쿠키는 브라우저 측에 기억해둘 정보
+세션은 서버 측에 기억해 둘 정보
+둘은 대게 함께사용한다
+
+< 2장 데이터베이스를 이용한 앱 만들기 >
+
+앱 실행 : Blueprint 사용
+
+SQLAlchemy 
+ORM : 파이썬에서 재공하는 SQL문 직접작성하지 않아도 SQL문을 실행할수 있도록 해주는 파이썬 함수의 집합
+
+마이그레이션은 코드정보를 바탕으로 데이터 베이스의 테이블 작성이나 컬럼 변경을 실시 하기 위한 기능
+해당 과정은 다음과 같다
+
+1. 데이터 모델작성
+2. 데이터 베이스 초기화 // flask db init
+3. 마이그레이션 : 플라스크에서 sql로 변환해서 쓸떄 필요한거 
+
+-----------------------------------------------------------------------------------------------------------
+
+SQLAlchemy사용한 데이터 조작
+: migration 된 데이터를 SQL문으로 실행할수 있게 해준다. 다양한 기능이 있고
+insert update delete등의 기능이 있다.
+
+데이터 베이스를 이용하여 CRUD 앱을 만들수 있는데
+CRUD는 Create, Read, Update, Delet 의 약자이다
+
+flask-wtf은 폼의 값이나 데이터의 검증 설정을 클래스에서 지정할수 있게 해주는데 이를 통해 HTML을 간결하게 하고 검증 누락도 방지하게 해준다,
+
+* CSRF 토큰은 HTML 정보를 암호화 하여 외부 사용자가 정보를 확인할수 없도록 하는 기능을 하고 이는 Flask와 비슷한 프로그램에서 죄다 지원하는 기능이다.
+
+< 템플릿의 공통화와 상속 >
+HTML은 기본적으로 참조가 불가능 한데 이를 참조하기위해 사용하는 가ㅓㅅ이 공통화이다
+이를 위해 공통 템플릿을 생성하여 정보를 넣어주면 됨 
+
+방법 : 기본적으로 HTML문서들이 공유하는 내용인 ! 를 했을때의 내용을 가진 base를 만들고
+각 HTMl별 내용이 들어가는 title과 content를 블록형태로 둘러쌈
+ 이떄 각 HTML은 base의 정보를 상속받아야 하므로 {% extend "base경로" %} 를 상위에 저굥ㅇ
+ 
